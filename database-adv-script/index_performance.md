@@ -19,10 +19,20 @@ The following columns were frequently used in `JOIN`, `WHERE`, or `ORDER BY` cla
 | `property`  | `id`           | Joins with `booking.property_id`          |
 
 ---
+## 🧪 Performance Improvement Notes
+
+- **Before Indexing:** Queries such as `SELECT * FROM Booking WHERE user_id = ?` resulted in full table scans.
+- **After Indexing:** Execution plans showed usage of the respective index with a large reduction in scanned rows.
+
+Use Example:
+```sql
+EXPLAIN SELECT * FROM Booking WHERE user_id = 1;
 
 ## 🛠 SQL Indexes Created
 
 These indexes were created in `database_index.sql`:
+
+**File: `database_index.sql`**
 
 ```sql
 -- Index for user bookings
